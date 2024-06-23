@@ -8,17 +8,24 @@ const typeDefs = readFileSync(
   require.resolve('./graphql/schema.graphql')
 ).toString('utf-8');
 
-
-const main = async () => {
+// Exportamos una función que inicia el servidor Apollo
+export async function handler() {
   const db = await getDB();
   const server = new ApolloServer({
-    typeDefs: ` ${typeDefs}`,
+    typeDefs,
     resolvers: resolverArray,
   });
+
   const { url } = await startStandaloneServer(server, {
     context: async () => ({ db }),
   });
-  console.log(`🚀 Server ready at ${url}`);
-};
 
-main();
+  console.log(`🚀 Server ready at ${url}`);
+
+  // Devolvemos una respuesta exitosa
+  return {
+    statusCode: 200,
+    body: JSON.stringify({ message: `Server ready at ${url}` }),
+  };
+}
+handler()
