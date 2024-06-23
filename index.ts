@@ -5,7 +5,7 @@ import resolverArray from './src/models';
 import { getDB } from './src/db';
 
 const typeDefs = readFileSync(
-  require.resolve('./graphql/schema.graphql')
+  require.resolve('./src/graphql/schema.graphql')
 ).toString('utf-8');
 
 // Exportamos una función que inicia el servidor Apollo
