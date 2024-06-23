@@ -3,10 +3,14 @@
   "module": "index.ts",
   "exports": "./dist/index.js",
   "scripts": {
+    "compile": "rimraf ./dist && tsc",
+    "build": "esbuild index.ts --bundle --minify --sourcemap --platform=node --target=es2020 --outfile=dist/index.js --external:./graphql/schema.graphql",
     "start": "ts-node index.ts"
   },
   "dependencies": {
-    "@prisma/client": "^5.15.1"
+    "@prisma/client": "^5.15.1",
+    "esbuild": "^0.21.5",
+    "fs": "^0.0.1-security"
   },
   "devDependencies": {
     "@apollo/server": "^4.10.4",
