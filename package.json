@@ -1,25 +1,19 @@
 {
   "name": "graphql-servidor-gestion-ingresos",
   "module": "index.ts",
-  "type": "module",
+  "exports": "./dist/index.js",
   "scripts": {
-    "compile": "tsc",
-    "start": "ts-node --loader ts-node/esm index.ts"
-  },
-  "devDependencies": {
-    "@types/bun": "latest"
-  },
-  "peerDependencies": {
-    "typescript": "^5.0.0"
+    "start": "ts-node index.ts"
   },
   "dependencies": {
+    "@prisma/client": "^5.15.1"
+  },
+  "devDependencies": {
     "@apollo/server": "^4.10.4",
-    "@prisma/client": "5.15.1",
-    "@types/node": "^20.14.8",
-    "esm": "^3.2.25",
+    "@types/node": "^18.11.3",
     "graphql": "^16.9.0",
     "prisma": "^5.15.1",
     "ts-node": "^10.9.2",
-    "typescript": "^5.0.0"
+    "typescript": "^5.5.2"
   }
 }

@@ -1,20 +1,24 @@
-import { PrismaClient } from '@prisma/client'
+import { ApolloServer } from '@apollo/server';
+import { startStandaloneServer } from '@apollo/server/standalone';
+import { readFileSync } from 'fs';
+import resolverArray from './src/models';
+import { getDB } from './src/db';
 
-const prisma = new PrismaClient()
+const typeDefs = readFileSync(
+  require.resolve('./graphql/schema.graphql')
+).toString('utf-8');
 
-async function main() {
-    // ... you will write your Prisma Client queries here
-    const allUsers = await prisma.user.findMany()
-    console.log(allUsers)
-  
-}
 
-main()
-  .then(async () => {
-    await prisma.$disconnect()
-  })
-  .catch(async (e) => {
-    console.error(e)
-    await prisma.$disconnect()
-    process.exit(1)
-  })
+const main = async () => {
+  const db = await getDB();
+  const server = new ApolloServer({
+    typeDefs: ` ${typeDefs}`,
+    resolvers: resolverArray,
+  });
+  const { url } = await startStandaloneServer(server, {
+    context: async () => ({ db }),
+  });
+  console.log(`🚀 Server ready at ${url}`);
+};
+
+main();
