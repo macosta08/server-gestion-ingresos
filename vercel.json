@@ -6,12 +6,6 @@
         "use": "@vercel/node"
       }
     ],
-    "routes": [
-      {
-        "src": "/(.*)",
-        "dest": "/dist/index.js"
-      }
-    ],
     "env": {
       "DATABASE_URL": "postgres://postgres.yktmymgihpytazgtxzeh:LBomRKwBKBhnSfug@aws-0-us-east-1.pooler.supabase.com:5432/postgres?schema=public"
     }
