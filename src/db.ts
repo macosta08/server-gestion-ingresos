@@ -8,6 +8,5 @@ export const getDB = () => {
 
   console.log('connection string: ', url);
   db = new PrismaClient({ datasources: { db: { url } } });
-  console.log('444444444444444444 :>> ', db);
   return db;
 };

@@ -5,7 +5,7 @@
   "scripts": {
     "compile": "rimraf ./dist && tsc",
     "build": "tsc -p . && ncp ./src dist/src node dist/index.js",
-    "dev": "ts-node index.ts",
+    "dev": "ts-node src/index.ts",
     "start": "node dist/index.js"
   },
   "dependencies": {
